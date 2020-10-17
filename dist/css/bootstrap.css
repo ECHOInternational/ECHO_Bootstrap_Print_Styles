@@ -214,7 +214,8 @@ th {
   a[href^="javascript:"]:after {
     content: "";
   }
-  figure a[href]:after {
+  figure a[href]:after,
+  .thumbnail a[href]:after {
     content: "";
   }
   pre,
@@ -222,6 +223,13 @@ th {
     page-break-inside: avoid;
   }
   table {
+    page-break-inside: avoid;
+  }
+  table.table-responsive {
+    overflow-x: visible;
+  }
+  figure,
+  .thumbnail {
     page-break-inside: avoid;
   }
   thead {
@@ -270,10 +278,6 @@ th {
   }
   .table {
     border-collapse: collapse !important;
-  }
-  .table td,
-  .table th {
-    background-color: #fff !important;
   }
   .table-bordered th,
   .table-bordered td {
@@ -329,13 +333,10 @@ figure {
 img {
   vertical-align: middle;
 }
-.img-responsive,
-.thumbnail > img,
-.thumbnail a > img {
+.img-responsive {
   display: block;
   max-width: 100%;
   height: auto;
-  width: 100%;
 }
 .img-rounded {
   border-radius: 6px;
@@ -625,6 +626,7 @@ a.bg-danger:focus {
   padding-bottom: -0.25em;
   margin: 3em 0 1.5em;
   border-bottom: 1px solid #eeeeee;
+  border-top: 1px solid #eeeeee;
 }
 ul,
 ol {
@@ -689,9 +691,12 @@ abbr[data-original-title] {
 }
 blockquote {
   padding: 0.75em 1.5em;
-  margin: 0 0 1.5em;
-  font-size: 1.5625em;
-  border-left: 5px solid #eeeeee;
+  margin: 0 -4em 1.5em -4em;
+  border-left: 5px solid #c09526;
+  text-align: justify;
+  font-size: 1em;
+  color: #333;
+  font-weight: lighter;
 }
 blockquote p:last-child,
 blockquote ul:last-child,
@@ -716,7 +721,7 @@ blockquote.pull-right {
   padding-right: 15px;
   padding-left: 0;
   text-align: right;
-  border-right: 5px solid #eeeeee;
+  border-right: 5px solid #c09526;
   border-left: 0;
 }
 .blockquote-reverse footer:before,
@@ -2143,32 +2148,6 @@ a.badge:focus {
     font-size: 6em;
   }
 }
-.thumbnail {
-  display: block;
-  padding: 4px;
-  margin-bottom: 1.5em;
-  line-height: 1.5em;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  -webkit-transition: border 0.2s ease-in-out;
-  -o-transition: border 0.2s ease-in-out;
-  transition: border 0.2s ease-in-out;
-}
-.thumbnail > img,
-.thumbnail a > img {
-  margin-right: auto;
-  margin-left: auto;
-}
-a.thumbnail:hover,
-a.thumbnail:focus,
-a.thumbnail.active {
-  border-color: #334049;
-}
-.thumbnail .caption {
-  padding: 9px;
-  color: #333333;
-}
 .alert {
   padding: 15px;
   margin-bottom: 1.5em;
@@ -3133,48 +3112,121 @@ button.list-group-item-danger.active:focus {
   padding-right: 10em;
   padding-left: 10em;
 }
-figure {
+.content-container figure,
+.content-container div {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-figure.pull-left {
+.content-container figure.pull-left,
+.content-container div.pull-left {
   margin-left: -10em;
   margin-right: 2em;
 }
-figure.pull-right {
+.content-container figure.pull-right,
+.content-container div.pull-right {
   margin-left: 2em;
   margin-right: -10em;
 }
-figure.col-sm-5,
-figure.col-sm-4,
-figure.col-sm-3,
-figure.col-sm-2,
-figure.col-sm-1 {
+.content-container figure.pull-center,
+.content-container div.pull-center {
+  margin: 0 auto;
+  width: 100% !important;
+}
+.content-container figure.col-sm-5,
+.content-container div.col-sm-5,
+.content-container figure.col-sm-4,
+.content-container div.col-sm-4,
+.content-container figure.col-sm-3,
+.content-container div.col-sm-3,
+.content-container figure.col-sm-2,
+.content-container div.col-sm-2,
+.content-container figure.col-sm-1,
+.content-container div.col-sm-1 {
   width: 75%;
 }
-figure.col-sm-11,
-figure.col-sm-10,
-figure.col-sm-9,
-figure.col-sm-8,
-figure.col-sm-7,
-figure.col-sm-6 {
+.content-container figure.col-sm-11,
+.content-container div.col-sm-11,
+.content-container figure.col-sm-10,
+.content-container div.col-sm-10,
+.content-container figure.col-sm-9,
+.content-container div.col-sm-9,
+.content-container figure.col-sm-8,
+.content-container div.col-sm-8,
+.content-container figure.col-sm-7,
+.content-container div.col-sm-7,
+.content-container figure.col-sm-6,
+.content-container div.col-sm-6 {
   width: 75%;
 }
-.call-out-left {
+.content-container figure.col-xs-5,
+.content-container div.col-xs-5,
+.content-container figure.col-xs-4,
+.content-container div.col-xs-4,
+.content-container figure.col-xs-3,
+.content-container div.col-xs-3,
+.content-container figure.col-xs-2,
+.content-container div.col-xs-2,
+.content-container figure.col-xs-1,
+.content-container div.col-xs-1 {
+  width: 75%;
+}
+.content-container figure.col-xs-11,
+.content-container div.col-xs-11,
+.content-container figure.col-xs-10,
+.content-container div.col-xs-10,
+.content-container figure.col-xs-9,
+.content-container div.col-xs-9,
+.content-container figure.col-xs-8,
+.content-container div.col-xs-8,
+.content-container figure.col-xs-7,
+.content-container div.col-xs-7,
+.content-container figure.col-xs-6,
+.content-container div.col-xs-6 {
+  width: 75%;
+}
+.content-container img.half {
+  width: 75%;
+}
+.content-container img.one-quarter {
+  width: 50%;
+}
+.content-container img.center {
+  margin: 0 auto;
+}
+.content-container img.right {
+  float: right;
+}
+.content-container img.left {
+  float: left;
+}
+.content-container .call-out-left {
+  text-align: justify;
   margin-left: -10em !important;
   margin-right: 2em !important;
-  width: 13em !important;
+  width: 17em !important;
+  margin-bottom: 2em;
   color: #006552;
 }
-.call-out-right {
+.content-container .call-out-right {
+  text-align: justify;
   margin-left: 2em !important;
   margin-right: -10em !important;
-  width: 14em !important;
+  width: 17em !important;
+  margin-bottom: 2em;
   color: #006552;
 }
-.img-responsive,
-.thumbnail > img,
-.thumbnail a > img {
+.content-container .img-responsive {
   width: 100%;
+}
+.content-container div.references p {
+  padding-left: 2em;
+  text-indent: -2em;
+}
+div.parents {
+  text-align: right;
+  color: #006552;
+}
+ul.shorturls {
+  list-style-type: none;
 }
 /*# sourceMappingURL=bootstrap.css.map */
